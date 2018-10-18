@@ -5,7 +5,7 @@ source("scripts/BDM2D.R")
 source("scripts/compressionLength.R")
 source("scripts/loadGraph.R")
 source("scripts/edgeAndVertexKnockout.R")
-source("scripts/relabelTables.R")
+
 source("scripts/listEdges.R")
 
 
