@@ -1,3 +1,5 @@
+require("igraph")
+
 listEdges <- function(gra){
   
   edgeList <- as_edgelist(gra, names = TRUE)
@@ -17,3 +19,4 @@ listEdges <- function(gra){
   }
   return("no links")
 }
+
