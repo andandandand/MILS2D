@@ -1,7 +1,7 @@
 require("igraph")
 
-#(PA for Perturbation Analysis)
-loadGraphPA <- function(dataPath)
+
+loadGraph <- function(dataPath)
 {
   
   loadedDF <- read.csv(dataPath,
@@ -25,27 +25,7 @@ loadGraphPA <- function(dataPath)
 }
 
 
-loadGraph <- function(dataPath, 
-                      separator, 
-                      quoteSymbol)
-{
-  
-  loadedDf <- read.csv(dataPath,
-                       header=FALSE,
-                       sep=separator,
-                       quote=quoteSymbol,
-                       stringsAsFactors = FALSE,
-                       check.names = FALSE)
-
-  #selects numeric values, drops the rest
-  loadedDf <- loadedDf[sapply(loadedDf, is.numeric)]
-  
-  rownames(loadedDf) <- colnames(loadedDf)
-  loadedMat <- as.matrix(loadedDf)
-  loadedMat
-}
-
 ## test
-#g <- loadGraphPA("starGraphAdjMatrix.csv")
-#print(g)
+g <- loadGraph("../data/starGraphAdjMatrix.csv")
+print(g)
 
