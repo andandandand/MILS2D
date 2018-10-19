@@ -70,17 +70,8 @@ shinyServer(function(input, output, session) {
                       "numberOfElements",
                       max = elems)
      
-     #TODO: find out why this doesn't update when changing vertices for edges
-     print(elems)  
   })
   
-  ## deconvolve's solution  
-  # observeEvent(input$n_components, {
-  #   
-  #   updateSliderInput(session,
-  #                     "n_components",
-  #                     max = vcount(react_graph$g))
-  # })
   
   output$graphPlot <- renderPlot({
     
