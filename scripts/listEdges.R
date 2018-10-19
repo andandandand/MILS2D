@@ -1,5 +1,6 @@
 require("igraph")
 
+#utility function for delete_edges
 listEdges <- function(gra){
   
   edgeList <- as_edgelist(gra, names = TRUE)
@@ -19,4 +20,15 @@ listEdges <- function(gra){
   }
   return("no links")
 }
+
+## test
+#star <- make_star(3)
+
+## should print 
+#edgeList <- listEdges(star)
+#print(edgeList)
+
+## should plot 3 vertices, without edges
+#plot(delete_edges(star, listEdges(star)[1:2]))
+
 
