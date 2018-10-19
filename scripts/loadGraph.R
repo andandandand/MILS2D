@@ -26,6 +26,6 @@ loadGraph <- function(dataPath)
 
 
 ## test
-g <- loadGraph("../data/starGraphAdjMatrix.csv")
-print(g)
+#g <- loadGraph("../data/starGraphAdjMatrix.csv")
+#print(g)
 
