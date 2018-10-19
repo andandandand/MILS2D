@@ -13,7 +13,9 @@ shinyServer(function(input, output, session) {
   
   ## MILS 2D tab
   
-  g <- loadGraphPA("./data/starGraphAdjMatrix.csv")
+  #TODO: FIX issue of graph not updating
+  g <- loadGraph("./data/starGraphAdjMatrix.csv")
+  
   pv <- calculateLossByVertexDeletion(g, blockSize=4, offset = 1)
   
   pe <- calculateLossByEdgeDeletion(g, blockSize = 4, offset = 1)
@@ -26,6 +28,25 @@ shinyServer(function(input, output, session) {
                                  pe = pe,
                                  deletionsCounter = deletionsCounter)
   
+  
+  observeEvent(input$file1, {
+    
+    inFile <- input$file1
+    
+    if (is.null(inFile$datapath)){
+      
+      
+    } else {
+      
+      reactiveData$pv <- calculateLossByVertexDeletion(g, 4, 1)
+      reactiveData$pe <- calculateLossByEdgeDeletion(g, 4, 1)
+      reactiveData$g  <- loadGraph(inFile$datapath)
+      
+      reactiveData$deletionsCounter <- as.integer(1)
+      
+    }
+    
+  }, ignoreInit = FALSE)
   
   observeEvent(input$numberOfElements, {
 
