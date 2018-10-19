@@ -59,8 +59,11 @@ shinyServer(function(input, output, session) {
       elems <- vcount(reactiveData$g)
       
     } 
-    else{
-      elems <- ecount(reactiveData$g)
+    
+    if(input$elementsToDelete == "edges") { 
+    
+        elems <- ecount(reactiveData$g)
+    
     }
     
     updateSliderInput(session,
