@@ -33,7 +33,6 @@ shinyUI(
                                                  'text/plain',
                                                  'text/csv',
                                                  '.csv')
-                                                                    
                             ),
                             
                             radioButtons(inputId="elementsToDelete", 
@@ -86,9 +85,6 @@ shinyUI(
                          
                          fluidRow(
                            
-            
-                         
-                         
                          )
         
       )  

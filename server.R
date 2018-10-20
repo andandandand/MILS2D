@@ -14,15 +14,15 @@ shinyServer(function(input, output, session) {
   ## MILS 2D tab
   g <- loadGraph("./data/starGraphAdjMatrix.csv")
   
-  pv <- calculateLossByVertexDeletion(g, blockSize=4, offset = 1)
+  lossVertices <- calculateLossByVertexDeletion(g, blockSize=4, offset = 1)
   
-  pe <- calculateLossByEdgeDeletion(g, blockSize = 4, offset = 1)
+  lossEdges <- calculateLossByEdgeDeletion(g, blockSize = 4, offset = 1)
   
   deletionsCounter <- as.integer(1)
 
   reactiveData <- reactiveValues(g = g,
-                                 pv = pv,
-                                 pe = pe,
+                                 lossVertices = lossVertices,
+                                 lossEdges = lossEdges,
                                  deletionsCounter = deletionsCounter)
   
   
@@ -35,8 +35,8 @@ shinyServer(function(input, output, session) {
       
     } else {
       
-      reactiveData$pv <- calculateLossByVertexDeletion(g, 4, 1)
-      reactiveData$pe <- calculateLossByEdgeDeletion(g, 4, 1)
+      reactiveData$lossVertices <- calculateLossByVertexDeletion(g, 4, 1)
+      reactiveData$lossEdges <- calculateLossByEdgeDeletion(g, 4, 1)
       reactiveData$g  <- loadGraph(inFile$datapath)
       
       reactiveData$deletionsCounter <- as.integer(1)
