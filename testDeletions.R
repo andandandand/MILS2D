@@ -5,7 +5,7 @@ source("scripts/edgeAndVertexKnockout.R")
 # population[order(population$age),]
 
 #g is an igraph graph, not an adjacency matrix
-g <- loadGraphPA("./data/starGraphAdjMatrix.csv")
+g <- loadGraph("../data/starGraphAdjMatrix.csv")
 plot(g)
 pv <- calculateLossByVertexDeletion(g, blockSize=4, offset = 1)
 print(pv)
