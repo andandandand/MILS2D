@@ -63,10 +63,7 @@ calculateLossByVertexDeletion <- function(origGraph, blockSize, offset){
     vertexPerturbationsDF[i, ]$bdmIncrease <- bdmIncrease
   }
   
- 
-  
-  #TODO: check correctLossRanking here
-  #TODO: check if the ranking is correct in perturbation analysis app
+
   vertexPerturbationsDF$perturbationsRank <-rank(
     -as.numeric(vertexPerturbationsDF$bdmDifferenceAfterDeletion),
         ties.method="min")
@@ -122,28 +119,8 @@ calculateLossByEdgeDeletion <- function(origGraph, blockSize, offset){
   return(edgePerturbationsDF)
 }
 
-getColorRampPalette <- function(perturbationsDF){
-  if(min(perturbationsDF$bdmDifferenceAfterDeletion) >= 0 ){
-    pal <- colorRampPalette(c("light gray", "light blue"))
-  } else if (max(perturbationsDF$bdmDifferenceAfterDeletion) < 0){
-    pal <- colorRampPalette(c("orangered", "red"))
-  } else {
-    pal <- colorRampPalette(rev(c("red", "orangered", "light gray", "light blue")))
-  }
-  return(pal)
-  
-}
 
-setGraphColors <- function(evaluatedGraph, vertexPerturbationsDF, edgePerturbationsDF){
 
-  vertexPal <- getColorRampPalette(vertexPerturbationsDF)
-  edgePal   <- getColorRampPalette(edgePerturbationsDF)
-
-  E(evaluatedGraph)$color <- edgePal(ecount(evaluatedGraph))[edgePerturbationsDF$perturbationsRank]
-  V(evaluatedGraph)$color <- vertexPal(vcount(evaluatedGraph))[vertexPerturbationsDF$perturbationsRank]
-
-  return(evaluatedGraph)
-}
 
 ########################
 

@@ -54,7 +54,7 @@ shinyServer(function(input, output, session) {
     
     if(input$elementsToDelete == "vertices"){ 
         
-      elems <- vcount(reactiveData$g)
+       elems <- vcount(reactiveData$g)
       
     } 
     
@@ -67,7 +67,6 @@ shinyServer(function(input, output, session) {
     updateSliderInput(session,
                       "numberOfElements",
                       max = elems)
-     
   })
   
   
