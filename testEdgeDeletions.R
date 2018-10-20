@@ -3,14 +3,23 @@ source("scripts/edgeAndVertexKnockout.R")
 
 require(igraph)
 
+formatEdgesForDeletion <- function(edgeLoss){
+  formattedEdges <- paste0(edgeLoss$from,"|", edgeLoss$to)
+  return (formattedEdges)
+}
+
 g <- make_star(5)  %>% set_vertex_attr("name", value = 1:5)
 plot(g)
 
-edgeLoss <- correctLossRanking(calculateLossByEdgeDeletion(g, blockSize = 4, offset = 1))
-print(edgeLoss)
+edgeLoss <- correctLossRanking(calculateLossByEdgeDeletion(g, 
+                                                           blockSize = 4, 
+                                                           offset = 1))
 
-rankedEdges <- paste0(edgeLoss$from,"|", edgeLoss$to)
-rankedEdges[1]
+formattedEdges <- formatEdgesForDeletion(edgeLoss)
 
-g2 <- delete_edges(g, rankedEdges[1:4])
+print(formattedEdges)
+
+print(formattedEdges[1])
+
+g2 <- delete_edges(g, formattedEdges[1:4])
 plot(g2)

@@ -72,6 +72,11 @@ calculateLossByVertexDeletion <- function(origGraph, blockSize, offset){
   return (vertexPerturbationsDF)
 }
 
+formatEdgesForDeletion <- function(edgeLoss){
+  formattedEdges <- paste0(edgeLoss$from,"|", edgeLoss$to)
+  return (formattedEdges)
+}
+
 calculateLossByEdgeDeletion <- function(origGraph, blockSize, offset){
   
   origMatrix <- as.matrix(as_adjacency_matrix(origGraph))

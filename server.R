@@ -10,12 +10,16 @@ source("scripts/listEdges.R")
 shinyServer(function(input, output, session) {
   
   ## MILS 2D tab
-  # the attribute name is set at loadGraph
+  # the attribute name for the graph is set at loadGraph
   g <- loadGraph("./data/starGraphAdjMatrix.csv")
   
-  lossVertices <- correctLossRanking(calculateLossByVertexDeletion(g, blockSize=4, offset = 1))
+  lossVertices <- correctLossRanking(calculateLossByVertexDeletion(g, 
+                                                                   blockSize=4, 
+                                                                   offset = 1))
   
-  lossEdges <- correctLossRanking(calculateLossByEdgeDeletion(g, blockSize = 4, offset = 1))
+  lossEdges <- correctLossRanking(calculateLossByEdgeDeletion(g, 
+                                                              blockSize = 4, 
+                                                              offset = 1))
   
   deletionsCounter <- as.integer(1)
 
@@ -53,19 +57,25 @@ shinyServer(function(input, output, session) {
     if(input$elementsToDelete == "vertices"){ 
         
        elems <- vcount(reactiveData$g)
-      
+    
+       #insert call to delete_vertices here  
     } 
     
     if(input$elementsToDelete == "edges") { 
     
         elems <- ecount(reactiveData$g)
+        
+        #insert call to delete_edges here
+        #reactiveData$g <- delete_edges(g, [input$numberOfElements])
+        print(reactiveData$lossEdges)
     
     }
     
     updateSliderInput(session,
                       "numberOfElements",
                       max = elems)
-  })
+  }, ignoreNULL = FALSE)
+  
   
   
   output$graphPlot <- renderPlot({
