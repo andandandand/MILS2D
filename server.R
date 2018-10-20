@@ -12,7 +12,6 @@ source("scripts/listEdges.R")
 shinyServer(function(input, output, session) {
   
   ## MILS 2D tab
-  
   g <- loadGraph("./data/starGraphAdjMatrix.csv")
   
   pv <- calculateLossByVertexDeletion(g, blockSize=4, offset = 1)

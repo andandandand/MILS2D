@@ -41,14 +41,12 @@ shinyUI(
                                          choices = c("vertices", "edges"),
                                          selected = "vertices"),
                             
-                            #TODO: update max dynamically on server
                             sliderInput(inputId="numberOfElements",
                                         label = "number of elements",
                                         min = 1, 
                                         max = 10, value = 1, step = 1
                                         ),
                             
-                            #TODO: handle server logic
                             actionButton(inputId="swapGraphsButton",
                                          label  ="Update evaluated graph")
                           )
@@ -80,6 +78,8 @@ shinyUI(
                                  plotOutput(""))
                          )
                         ), # end conditionalPanel
+        
+        #For strings
         conditionalPanel(condition="input.conditionedPanels==2",
                          
                          br(),
