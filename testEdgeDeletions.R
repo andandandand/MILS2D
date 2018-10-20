@@ -1,3 +1,5 @@
+## runApp server.r before this to get bdm2D.r to work
+
 source("scripts/loadGraph.R")
 source("scripts/edgeAndVertexKnockout.R")
 

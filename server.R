@@ -13,6 +13,8 @@ shinyServer(function(input, output, session) {
   # the attribute name for the graph is set at loadGraph
   g <- loadGraph("./data/starGraphAdjMatrix.csv")
   
+  reducedG <- g
+  
   lossVertices <- correctLossRanking(calculateLossByVertexDeletion(g, 
                                                                    blockSize=4, 
                                                                    offset = 1))
@@ -24,6 +26,7 @@ shinyServer(function(input, output, session) {
   deletionsCounter <- as.integer(1)
 
   reactiveData <- reactiveValues(g = g,
+                                 reducedG = reducedG, 
                                  lossVertices = lossVertices,
                                  lossEdges = lossEdges,
                                  deletionsCounter = deletionsCounter)
@@ -67,8 +70,9 @@ shinyServer(function(input, output, session) {
         
         #insert call to delete_edges here
         #reactiveData$g <- delete_edges(reactiveData$g, [input$numberOfElements])
-        edgesToDelete <- formatEdgesForDeletion(reactiveData$lossEdges)
-        print(reactiveData$lossEdges)
+        #edgesToDelete <- formatEdgesForDeletion(reactiveData$lossEdges)
+        #print(reactiveData$lossEdges)
+        reactiveData$reducedG <- delete_edges(reactiveData$g, edgesToDelete[input$numberOfElements])
     
     }
     
