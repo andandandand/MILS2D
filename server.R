@@ -66,7 +66,8 @@ shinyServer(function(input, output, session) {
         elems <- ecount(reactiveData$g)
         
         #insert call to delete_edges here
-        #reactiveData$g <- delete_edges(g, [input$numberOfElements])
+        #reactiveData$g <- delete_edges(reactiveData$g, [input$numberOfElements])
+        edgesToDelete <- formatEdgesForDeletion(reactiveData$lossEdges)
         print(reactiveData$lossEdges)
     
     }
