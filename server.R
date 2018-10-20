@@ -13,7 +13,6 @@ shinyServer(function(input, output, session) {
   
   ## MILS 2D tab
   
-  #TODO: FIX issue of graph not updating
   g <- loadGraph("./data/starGraphAdjMatrix.csv")
   
   pv <- calculateLossByVertexDeletion(g, blockSize=4, offset = 1)
@@ -22,7 +21,6 @@ shinyServer(function(input, output, session) {
   
   deletionsCounter <- as.integer(1)
 
-  #TODO: solve issue with deletionsCounter when element changes from edge to vertex or viceversa  
   reactiveData <- reactiveValues(g = g,
                                  pv = pv,
                                  pe = pe,
