@@ -2,10 +2,10 @@
 require("igraph")
 require("purrr")
 
-correctLossRanking <- function (pe){
+correctLossRanking <- function (lossRanking){
   
   #rank losses
-  bdmLossesDf <- pe[!pe$bdmIncrease, ]
+  bdmLossesDf <- lossRanking[!lossRanking$bdmIncrease, ]
   
   bdmLossesDf$perturbationsRank <-rank(
     as.numeric(bdmLossesDf$bdmDifferenceAfterDeletion),
@@ -14,7 +14,7 @@ correctLossRanking <- function (pe){
   maxLossRank <- max(bdmLossesDf$perturbationsRank)
   
   #rank gains
-  bdmGainsDf <- pe[pe$bdmIncrease, ]
+  bdmGainsDf <- lossRanking[lossRanking$bdmIncrease, ]
   
   bdmGainsDf$perturbationsRank <-rank(
     as.numeric(bdmGainsDf$bdmDifferenceAfterDeletion),ties.method="min"
@@ -181,9 +181,9 @@ setGraphColors <- function(evaluatedGraph, vertexPerturbationsDF, edgePerturbati
 
 # starGraph <- loadGraphPA("../data/starGraphAdjMatrix.csv")
 # 
-# pe        <- calculatePerturbationByEdgeDeletion(starGraph, 4, 1)
+# lossRanking        <- calculatePerturbationByEdgeDeletion(starGraph, 4, 1)
 # 
-# print(pe)
+# print(lossRanking)
 # 
 # print(processBDMIncreases(starGraph))
 # 
