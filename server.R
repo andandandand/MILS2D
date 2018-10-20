@@ -12,7 +12,7 @@ source("scripts/listEdges.R")
 shinyServer(function(input, output, session) {
   
   ## MILS 2D tab
-  # TODO: check if we need to set attribute name
+  # the attribute name is set at loadGraph
   g <- loadGraph("./data/starGraphAdjMatrix.csv")
   
   lossVertices <- correctLossRanking(calculateLossByVertexDeletion(g, blockSize=4, offset = 1))
