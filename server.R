@@ -75,8 +75,6 @@ shinyServer(function(input, output, session) {
          
          verticesToDelete <- reactiveData$lossVertices$name
          
-         print(verticesToDelete)
-         
          reactiveData$reducedG <- delete_vertices(reactiveData$g, 
                                                   verticesToDelete[1:input$numberOfElements])
       } 

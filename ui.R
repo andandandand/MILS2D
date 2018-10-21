@@ -48,7 +48,10 @@ shinyUI(
                                         ),
                             
                             actionButton(inputId="swapGraphsButton",
-                                         label  ="Update evaluated graph")
+                                         label  ="Update evaluated graph"),
+                            
+                            actionButton(inputId="resetGraphsButton",
+                                         label = "Reset evaluated graph")
                           )
                         )
                       ), #end "For networks" tabpanel
