@@ -61,9 +61,12 @@ shinyServer(function(input, output, session) {
         
        elems <- vcount(reactiveData$g)
        
-       verticesToDelete <- reactiveData$lossVertices
-    
-       #insert call to delete_vertices here  
+       verticesToDelete <- reactiveData$lossVertices$name
+       
+       print(verticesToDelete)
+       
+       reactiveData$reducedG <- delete_vertices(reactiveData$g, 
+                                                verticesToDelete[1:input$numberOfElements])
     } 
     
     if(input$elementsToDelete == "edges") { 
