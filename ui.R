@@ -73,8 +73,7 @@ shinyUI(
                                  plotOutput("graphPlot")),
                           column(width = 5, 
                                  h3("Reduced Graph", align="center"),
-                                 #TODO: change to reducedGraphPlot
-                                 plotOutput(""))
+                                 plotOutput("reducedGraphPlot"))
                          )
                         ), # end conditionalPanel
         

@@ -60,6 +60,8 @@ shinyServer(function(input, output, session) {
     if(input$elementsToDelete == "vertices"){ 
         
        elems <- vcount(reactiveData$g)
+       
+       verticesToDelete <- reactiveData$lossVertices
     
        #insert call to delete_vertices here  
     } 
@@ -68,15 +70,11 @@ shinyServer(function(input, output, session) {
     
         elems <- ecount(reactiveData$g)
         
-        #insert call to delete_edges here
-        #reactiveData$g <- delete_edges(reactiveData$g, [input$numberOfElements])
         edgesToDelete <- formatEdgesForDeletion(reactiveData$lossEdges)
-        print(edgesToDelete)
-        print(edgesToDelete[input$numberOfElements])
-        #print(reactiveData$lossEdges)
-        #TODO: GET a minimal implementation with delete_edges working
-        reactiveData$reducedG <- delete_edges(reactiveData$g, edgesToDelete[input$numberOfElements])
-        print(reactiveData$reducedG)
+        
+        reactiveData$reducedG <- delete_edges(reactiveData$g, 
+                                              edgesToDelete[1:input$numberOfElements])
+       
     }
     
     updateSliderInput(session,
