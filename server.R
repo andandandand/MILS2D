@@ -29,6 +29,7 @@ shinyServer(function(input, output, session) {
 
   reactiveData <- reactiveValues(g = g,
                                  reducedG = reducedG, 
+                                 originalG = originalG,
                                  lossVertices = lossVertices,
                                  lossEdges = lossEdges,
                                  deletionsCounter = deletionsCounter)
@@ -36,6 +37,13 @@ shinyServer(function(input, output, session) {
   observeEvent(input$swapGraphsButton, {
     
     reactiveData$g <- reactiveData$reducedG
+    
+  })
+  
+  observeEvent(input$resetGraphsButton,{
+    
+    reactiveData$g <- reactiveData$originalG
+    reactiveData$reducedG <- reactiveData$originalG
     
   })
   
