@@ -42,7 +42,7 @@ shinyUI(
                             
                             # updated on server
                             sliderInput(inputId="numberOfElements",
-                                        label = "number of elements",
+                                        label = "Number of elements to delete",
                                         min = 0, 
                                         max = 10, value = 1, step = 1
                                         ),

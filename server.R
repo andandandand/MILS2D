@@ -10,8 +10,10 @@ source("scripts/listEdges.R")
 shinyServer(function(input, output, session) {
   
   ## MILS 2D tab
-  # the attribute name for the graph is set at loadGraph
+  # the names/indices of vertices for the graph are set at loadGraph
   g <- loadGraph("./data/starGraphAdjMatrix.csv")
+  
+  originalG <- g
   
   reducedG <- g
   
@@ -31,6 +33,12 @@ shinyServer(function(input, output, session) {
                                  lossEdges = lossEdges,
                                  deletionsCounter = deletionsCounter)
   
+  observeEvent(input$swapGraphsButton, {
+    
+    reactiveData$g <- reactiveData$reducedG
+    
+  })
+  
   
   observeEvent(input$file1, {
     
@@ -42,8 +50,10 @@ shinyServer(function(input, output, session) {
     } else {
       
       reactiveData$lossVertices <- correctLossRanking(calculateLossByVertexDeletion(g, 4, 1))
-      reactiveData$lossEdges <- correctLossRanking(calculateLossByEdgeDeletion(g, 4, 1))
-      reactiveData$g  <- loadGraph(inFile$datapath)
+      reactiveData$lossEdges    <- correctLossRanking(calculateLossByEdgeDeletion(g, 4, 1))
+      reactiveData$g            <- loadGraph(inFile$datapath)
+      reactiveData$reducedG     <- reactiveData$g
+      reactiveData$originalG    <- reactiveData$g
       
       reactiveData$deletionsCounter <- as.integer(1)
       
