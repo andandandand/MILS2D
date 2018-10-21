@@ -40,9 +40,10 @@ shinyUI(
                                          choices = c("vertices", "edges"),
                                          selected = "vertices"),
                             
+                            # updated on server
                             sliderInput(inputId="numberOfElements",
                                         label = "number of elements",
-                                        min = 1, 
+                                        min = 0, 
                                         max = 10, value = 1, step = 1
                                         ),
                             

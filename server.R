@@ -57,32 +57,35 @@ shinyServer(function(input, output, session) {
     vertices <- c()
     edges    <- c()
     
-    if(input$elementsToDelete == "vertices"){ 
-        
-       elems <- vcount(reactiveData$g)
-       
-       verticesToDelete <- reactiveData$lossVertices$name
-       
-       print(verticesToDelete)
-       
-       reactiveData$reducedG <- delete_vertices(reactiveData$g, 
-                                                verticesToDelete[1:input$numberOfElements])
-    } 
+    if(input$numberOfElements!=0){
     
-    if(input$elementsToDelete == "edges") { 
-    
-        elems <- ecount(reactiveData$g)
-        
-        edgesToDelete <- formatEdgesForDeletion(reactiveData$lossEdges)
-        
-        reactiveData$reducedG <- delete_edges(reactiveData$g, 
-                                              edgesToDelete[1:input$numberOfElements])
-       
+      if(input$elementsToDelete == "vertices"){ 
+          
+         elems <- vcount(reactiveData$g)
+         
+         verticesToDelete <- reactiveData$lossVertices$name
+         
+         print(verticesToDelete)
+         
+         reactiveData$reducedG <- delete_vertices(reactiveData$g, 
+                                                  verticesToDelete[1:input$numberOfElements])
+      } 
+      
+      if(input$elementsToDelete == "edges") { 
+      
+          elems <- ecount(reactiveData$g)
+          
+          edgesToDelete <- formatEdgesForDeletion(reactiveData$lossEdges)
+          
+          reactiveData$reducedG <- delete_edges(reactiveData$g, 
+                                                edgesToDelete[1:input$numberOfElements])
+         
+      }
     }
     
     updateSliderInput(session,
                       "numberOfElements",
-                      max = elems)
+                      max = elems-1)
   }, ignoreNULL = FALSE)
   
   
