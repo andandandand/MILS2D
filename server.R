@@ -70,10 +70,13 @@ shinyServer(function(input, output, session) {
         
         #insert call to delete_edges here
         #reactiveData$g <- delete_edges(reactiveData$g, [input$numberOfElements])
-        #edgesToDelete <- formatEdgesForDeletion(reactiveData$lossEdges)
+        edgesToDelete <- formatEdgesForDeletion(reactiveData$lossEdges)
+        print(edgesToDelete)
+        print(edgesToDelete[input$numberOfElements])
         #print(reactiveData$lossEdges)
+        #TODO: GET a minimal implementation with delete_edges working
         reactiveData$reducedG <- delete_edges(reactiveData$g, edgesToDelete[input$numberOfElements])
-    
+        print(reactiveData$reducedG)
     }
     
     updateSliderInput(session,
@@ -95,4 +98,16 @@ shinyServer(function(input, output, session) {
     
   }) 
 
+  output$reducedGraphPlot <- renderPlot({
+    
+    coords <- layout_(reactiveData$reducedG, as_star())
+    
+    plot(reactiveData$reducedG,
+         layout = coords,
+         edge.arrow.size = 0.4,
+         vertex.size = 25,
+         vertex.label.family = "Arial Black")
+    
+  }) 
+  
 })

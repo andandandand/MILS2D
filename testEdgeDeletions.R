@@ -10,6 +10,7 @@ formatEdgesForDeletion <- function(edgeLoss){
   return (formattedEdges)
 }
 
+#TODO: CHECK IF THIS IS BEING DONE EQUALLY ON loadGraph.R
 g <- make_star(5)  %>% set_vertex_attr("name", value = 1:5)
 plot(g)
 

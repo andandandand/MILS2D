@@ -19,8 +19,8 @@ loadGraph <- function(dataPath)
   
   #we use the rownames to index deletions
   g <- graph_from_adjacency_matrix(loadedMat) %>%
-    set_vertex_attr("label", value = rownames(loadedDF) )
-  
+    set_vertex_attr("label", value = 1:nrow(loadedDF))
+
   
   return(g)
 }
