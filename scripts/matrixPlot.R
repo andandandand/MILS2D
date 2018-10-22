@@ -2,7 +2,7 @@ require(igraph)
 require(ggplot2)
 require(reshape2)
 
-matrixPlot <- function(graphToPlot){
+plotAdjMatrix <- function(graphToPlot){
   
   gAdjMatrix <- as.matrix(as_adj(graphToPlot))
   

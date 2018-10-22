@@ -111,11 +111,15 @@ shinyServer(function(input, output, session) {
     
     if(input$showAdjacencyMatrix==TRUE){
       
+      #plotAdjMatrix(reactiveData$g) # why does this fail?
+      #plotAdjMatrix(make_star(5)) # why does this work? 
+      #cheat <- reactiveData$g # fails
+      plotAdjMatrix(cheat)
       print("test")
-      
+    
     }
     
-    
+    else{
     coords <- layout_(reactiveData$g, as_star())
     
     plot(reactiveData$g,
@@ -123,7 +127,7 @@ shinyServer(function(input, output, session) {
          edge.arrow.size = 0.5,
          vertex.size = 25,
          vertex.label.family = "Arial Black")
-    
+    }
   }) 
 
   output$reducedGraphPlot <- renderPlot({
