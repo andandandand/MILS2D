@@ -1,0 +1,12 @@
+name: 1-ProtoRepoMILS-2D
+title: 1-ProtoRepoMILS-2D
+username:
+account: labores
+server: shinyapps.io
+hostUrl: https://api.shinyapps.io/v1
+appId: 528968
+bundleId: 1656750
+url: https://labores.shinyapps.io/1-ProtoRepoMILS-2D/
+when: 1540247984.50325
+asMultiple: FALSE
+asStatic: FALSE

@@ -141,12 +141,12 @@ shinyServer(function(input, output, session) {
     
     if(input$showAdjacencyMatrix==TRUE){
       
-      #plotAdjMatrix(reactiveData$g) # why does this fail?
-      #plotAdjMatrix(make_star(5)) # why does this work? 
+      #plotAdjMatrix(reactiveData$g) # why does this fail? class(reactiveData$g) == "igraph"
+      #plotAdjMatrix(make_star(5)) # why does this work?  class(make_star(5)) == "igraph"
       #cheat <- reactiveData$g # fails
-      plotAdjMatrix(make_star(8))
-      print("test")
-    
+      g <- make_star(5)
+      plotAdjMatrix(g)
+
     }
     
     else{
