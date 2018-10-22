@@ -5,6 +5,7 @@ source("scripts/compressionLength.R")
 source("scripts/loadGraph.R")
 source("scripts/edgeAndVertexKnockout.R")
 source("scripts/listEdges.R")
+source("scripts/matrixPlot.R")
 
 
 shinyServer(function(input, output, session) {
@@ -107,6 +108,13 @@ shinyServer(function(input, output, session) {
   
   
   output$graphPlot <- renderPlot({
+    
+    if(input$showAdjacencyMatrix==TRUE){
+      
+      print("test")
+      
+    }
+    
     
     coords <- layout_(reactiveData$g, as_star())
     
