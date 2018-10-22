@@ -112,7 +112,7 @@ shinyServer(function(input, output, session) {
     
     plot(reactiveData$g,
          layout = coords,
-         edge.arrow.size = 0.4,
+         edge.arrow.size = 0.5,
          vertex.size = 25,
          vertex.label.family = "Arial Black")
     
@@ -124,7 +124,7 @@ shinyServer(function(input, output, session) {
     
     plot(reactiveData$reducedG,
          layout = coords,
-         edge.arrow.size = 0.4,
+         edge.arrow.size = 0.5,
          vertex.size = 25,
          vertex.label.family = "Arial Black")
     

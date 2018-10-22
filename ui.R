@@ -34,6 +34,11 @@ shinyUI(
                                                  'text/csv',
                                                  '.csv')
                             ),
+                            
+                            checkboxInput(inputId = "showAdjacencyMatrix", 
+                                          label = "Show adjacency matrix", 
+                                          value = FALSE, width = NULL),
+                            
                             hr(),
                             radioButtons(inputId="elementsToDelete", 
                                          label = "Elements to delete",
