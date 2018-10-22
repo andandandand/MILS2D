@@ -34,7 +34,7 @@ shinyUI(
                                                  'text/csv',
                                                  '.csv')
                             ),
-                            
+                            hr(),
                             radioButtons(inputId="elementsToDelete", 
                                          label = "Elements to delete",
                                          choices = c("vertices", "edges"),
@@ -43,15 +43,18 @@ shinyUI(
                             # updated on server
                             sliderInput(inputId="numberOfElements",
                                         label = "Number of elements to delete",
-                                        min = 0, 
+                                        min = 1, 
                                         max = 10, value = 1, step = 1
                                         ),
                             
+                            hr(),
                             actionButton(inputId="swapGraphsButton",
-                                         label  ="Update evaluated graph"),
-                            
+                                         label  ="Update evaluated graph",
+                                         width = "45%"),
+                            hr(),
                             actionButton(inputId="resetGraphsButton",
-                                         label = "Reset evaluated graph")
+                                         label = "Reset evaluated graph",
+                                         width = "45%")
                           )
                         )
                       ), #end "For networks" tabpanel
