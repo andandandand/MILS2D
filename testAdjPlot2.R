@@ -4,21 +4,17 @@ require(reshape2)
 
 source("scripts/loadGraph.R")
 
-## Test #1 
-g <- make_star(5)
 
-#g <- loadGraph("./data/starGraphAdjMatrix.csv")
-
-gAdjMatrix <- as.matrix(as_adj(g))
-
-print(gAdjMatrix)
-
-logMatrix <- (gAdjMatrix == 1)
-
-matData <- melt(logMatrix)
-
-g <- ggplot(data = matData,
-       aes(Var2, Var1)) + 
+plotAdjMatrix <- function(graphToPlot){
+  
+  gAdjMatrix <- as.matrix(as_adj(graphToPlot))
+  
+  logMatrix <- (gAdjMatrix == 1)
+  
+  matData <- melt(logMatrix)
+  
+  g <- ggplot(data = matData,
+              aes(Var2, Var1)) + 
     geom_tile(aes(fill = value, 
                   color = value)) + 
     coord_equal() + 
@@ -31,6 +27,13 @@ g <- ggplot(data = matData,
           panel.grid = element_blank()) +
     guides(fill = FALSE, color = FALSE) +
     scale_y_reverse()
+  
+  print(g)
+}
 
-print(g)
+
+
+g <- loadGraph("./data/starGraphAdjMatrix.csv")
+
+plotAdjMatrix(g)
 
