@@ -22,11 +22,18 @@ loadGraph <- function(dataPath)
   loadedMat <- as.matrix(loadedDF)
   
   #we use the rownames to index deletions
-  g <- graph_from_adjacency_matrix(loadedMat) %>%
-    set_vertex_attr("label", value = 1:nrow(loadedDF))
+  # g <- graph_from_adjacency_matrix(loadedMat) %>%
+  #   set_vertex_attr("label", value = 1:nrow(loadedDF))
   
-  
+  g <- graph_from_adjacency_matrix(loadedMat) 
   return(g)
+}
+
+unnameGraph <- function(graphToPlot){
+  
+  gAdjMatrix <- unname(as.matrix(graphToPlot))
+  
+  return(gAdjMatrix)
 }
 
 plotAdjMatrix <- function(graphToPlot){
@@ -64,5 +71,11 @@ plotAdjMatrix(g1)
 ## Test #2
 g2 <- loadGraph("./data/starGraphAdjMatrix.csv")
 
+g3 <- unnameGraph(g2)
+
 # this fails
-plotAdjMatrix(g2)
+#plotAdjMatrix(g2)
+
+g1
+g2
+plotAdjMatrix(g3)
