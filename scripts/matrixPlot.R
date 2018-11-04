@@ -1,6 +1,6 @@
-require(igraph)
-require(ggplot2)
-require(reshape2)
+require("igraph")
+require("ggplot2")
+require("reshape2")
 
 plotAdjMatrix <- function(graphToPlot){
   
@@ -27,7 +27,3 @@ plotAdjMatrix <- function(graphToPlot){
   
   print(g)
 }
-
-#test
-
-matrixPlot(make_star(5))
