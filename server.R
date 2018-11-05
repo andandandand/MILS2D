@@ -114,15 +114,8 @@ shinyServer(function(input, output, session) {
     
     if(input$showAdjacencyMatrix==TRUE){
       
-      #plotAdjMatrix(reactiveData$g) # why does this fail? class(reactiveData$g) == "igraph"
-      #plotAdjMatrix(make_star(5)) # why does this work?  class(make_star(5)) == "igraph"
-      #cheat <- reactiveData$g # fails
-      #issue: the format of the data taken from the csv file
-      # https://stackoverflow.com/questions/29278153/plotting-with-ggplot2-error-discrete-value-supplied-to-continuous-scale-on-c
-      
-      reactiveData$g <- make_star(5)
-      #print(class(reactiveData$g))
-      #print(class(g))
+      # TODO: 
+      # solution: store plotAdjMatrixG as a separate reactive variable
       plotAdjMatrix(reactiveData$g)
 
     }
