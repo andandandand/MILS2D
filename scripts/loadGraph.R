@@ -17,7 +17,7 @@ loadGraph <- function(dataPath)
   rownames(loadedDF) <- colnames(loadedDF)
   loadedMat <- as.matrix(loadedDF)
   
-  loadedMat <- unname(as.matrix(loadedDF)) 
+  #loadedMat <- unname(as.matrix(loadedDF)) 
   
   #we use the rownames to index deletions
   g <- graph_from_adjacency_matrix(loadedMat) %>%

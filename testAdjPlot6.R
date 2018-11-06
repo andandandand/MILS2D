@@ -20,8 +20,8 @@ loadGraph <- function(dataPath)
   
   rownames(loadedDF) <- colnames(loadedDF)
   # change here https://stackoverflow.com/a/53037158/45963
-  loadedMat <- unname(as.matrix(loadedDF)) 
-  
+  # loadedMat <- unname(as.matrix(loadedDF)) 
+  loadedMat <- as.matrix(loadedDF)
   
   #we use the rownames to index deletions
    g <- graph_from_adjacency_matrix(loadedMat) %>%
@@ -33,9 +33,10 @@ loadGraph <- function(dataPath)
 
 unnameGraph <- function(graphToPlot){
   
-  gAdjMatrix <- unname(as.matrix(graphToPlot))
+  edgeListG2 <- as_edgelist(graphToPlot, names = FALSE)
   
-  return(gAdjMatrix)
+  return(make_graph(edgeListG2))
+
 }
 
 plotAdjMatrix <- function(graphToPlot){
@@ -73,4 +74,13 @@ plotAdjMatrix(g1)
 ## Test #2
 g2 <- loadGraph("./data/starGraphAdjMatrix.csv")
 
-plotAdjMatrix(g2)
+# "discrete value supplied to continuous scale" error
+#plotAdjMatrix(g2)
+
+edgeListG2 <- as_edgelist(g2, names = FALSE)
+
+make_graph(edgeListG2)
+
+g3 <- unnameGraph(g2)
+
+
