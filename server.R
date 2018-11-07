@@ -6,7 +6,7 @@ source("scripts/loadGraph.R")
 source("scripts/edgeAndVertexKnockout.R")
 source("scripts/listEdges.R")
 source("scripts/matrixPlot.R")
-
+source("scripts/unnameGraph.R")
 
 require("igraph")
 
@@ -114,9 +114,7 @@ shinyServer(function(input, output, session) {
     
     if(input$showAdjacencyMatrix==TRUE){
       
-      # TODO: 
-      # solution: store plotAdjMatrixG as a separate reactive variable
-      plotAdjMatrix(reactiveData$g)
+      plotAdjMatrix(unnameGraph(reactiveData$g))
 
     }
     
@@ -133,14 +131,22 @@ shinyServer(function(input, output, session) {
 
   output$reducedGraphPlot <- renderPlot({
     
-    coords <- layout_(reactiveData$reducedG, as_star())
+    if(input$showAdjacencyMatrix==TRUE){
+      
+      plotAdjMatrix(unnameGraph(reactiveData$reducedG))
+      
+    }
     
-    plot(reactiveData$reducedG,
-         layout = coords,
-         edge.arrow.size = 0.5,
-         vertex.size = 25,
-         vertex.label.family = "Arial Black")
+    else{
     
+      coords <- layout_(reactiveData$reducedG, as_star())
+    
+      plot(reactiveData$reducedG,
+           layout = coords,
+           edge.arrow.size = 0.5,
+           vertex.size = 25,
+           vertex.label.family = "Arial Black")
+    }
   }) 
   
 })

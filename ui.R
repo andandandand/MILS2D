@@ -36,7 +36,7 @@ shinyUI(
                             ),
                             
                             checkboxInput(inputId = "showAdjacencyMatrix", 
-                                          label = "Show adjacency matrix", 
+                                          label = "Show adjacency matrices", 
                                           value = FALSE, width = NULL),
                             
                             hr(),

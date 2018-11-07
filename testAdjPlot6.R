@@ -31,13 +31,15 @@ loadGraph <- function(dataPath)
   return(g)
 }
 
-unnameGraph <- function(graphToPlot){
-  
-  edgeListG2 <- as_edgelist(graphToPlot, names = FALSE)
-  
-  return(make_graph(edgeListG2))
-
-}
+# unnameGraph <- function(graphToUnname){
+#   
+#   g <- graphToUnname
+#   
+#   V(g)$name <- 1:vcount(g)
+#   
+#   return(g)
+# 
+# }
 
 plotAdjMatrix <- function(graphToPlot){
   
@@ -65,22 +67,9 @@ plotAdjMatrix <- function(graphToPlot){
   print(g)
 }
 
-## Test #1 
-g1 <- make_star(5)
-
-# this works
-plotAdjMatrix(g1)
 
 ## Test #2
 g2 <- loadGraph("./data/starGraphAdjMatrix.csv")
 
-# "discrete value supplied to continuous scale" error
-#plotAdjMatrix(g2)
-
-edgeListG2 <- as_edgelist(g2, names = FALSE)
-
-make_graph(edgeListG2)
-
-g3 <- unnameGraph(g2)
-
+plotAdjMatrix(unnameGraph(g2))
 
